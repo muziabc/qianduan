@@ -1,8 +1,10 @@
-#!/bin/sh
-yarn stdver
+#!/bin/bash
+cd `dirname $0`
 
-yarn build
+# 项目构建操作....
+#参考
+npm i --registry=https://registry.npm.taobao.org && npm run build
 
-git remote add github https://$GITHUB_TOKEN@github.com/levy9527/nuxt-element-dashboard.git > /dev/null 2>&1
-git push github HEAD:master --follow-tags
-
+echo "压缩项目"
+#压缩构建成功output的目录
+tar -cf $APP_NAME-v$VERSION.tar.gz ./dist
